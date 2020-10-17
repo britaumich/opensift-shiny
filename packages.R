@@ -1,0 +1,81 @@
+using<-function(...) {
+    libs<-unlist(list(...))
+    req<-unlist(lapply(libs,require,character.only=TRUE))
+    need<-libs[req==FALSE]
+    if(length(need)>0){ 
+        install.packages(need, lib="/usr/local/lib/R/library")
+        lapply(need,require,character.only=TRUE)
+    }
+}
+using ("ape",
+"bit",
+"bit64",
+"clusterGeneration",
+"coda",
+"colorspace",
+"combinat",
+"crayon",
+"crosstalk",
+"data.table",
+"DBI",
+"digest",
+"dplyr",
+"DT",
+"ellipsis",
+"expm",
+"farver",
+"fastmap",
+"fastmatch",
+"generics",
+"ggplot2",
+"glue", 
+"gtable",
+"gtools",
+"hms",
+"htmltools",
+"htmlwidgets",
+"httpuv",
+"httr",
+"igraph",
+"jsonlite",
+"labeling",
+"later",
+"lazyeval",
+"lifecycle",
+"magrittr",
+"maps",
+"mime",
+"mnormt",
+"munsell",
+"numDeriv",
+"phangorn",
+"phytools",
+"pillar",
+"pkgconfig",
+"plotly",
+"plotrix",
+"promises",
+"purrr",
+"quadprog",
+"R6",
+"Rcpp",
+"rlang",
+"RMariaDB",
+"scales",
+"scatterplot3d",
+"sourcetools",
+"tibble",
+"tidyr",
+"tidyselect",
+"tidytree",
+"tmvnsim",
+"vctrs",
+"viridisLite",
+"withr",
+"xtable"
+)
+using ("shiny", "shinythemes")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("ggtree")
