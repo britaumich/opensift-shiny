@@ -43,7 +43,7 @@ RUN mkdir -p /code
 COPY packages.R /code/packages.R
 #COPY .env /var/check.Renviron
 RUN sudo Rscript /code/packages.R
-
+COPY mountpoints/apps /srv/shiny-server
 #RUN R -e "install.packages(c('shiny', 'rmarkdown'), repos='$MRAN')"
 RUN chown shiny:shiny /var/lib/shiny-server
 ARG USERDB
