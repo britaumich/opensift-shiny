@@ -46,6 +46,9 @@ RUN sudo Rscript /code/packages.R
 COPY mountpoints/apps /srv/shiny-server
 #RUN R -e "install.packages(c('shiny', 'rmarkdown'), repos='$MRAN')"
 RUN chown shiny:shiny /var/lib/shiny-server
+ARG IMAGE_NAME
+RUN export IMAGE_NAME=$IMAGE_NAME
+ENV IMAGE_NAME $IMAGE_NAME
 ARG USERDB
 RUN export USERDB=$USERDB
 ENV USERDB $USERDB
