@@ -1,4 +1,15 @@
 #!/bin/bash
 
+echo "[***] Build hook starting..."
+echo "[---] IMAGE_NAME: ${IMAGE_NAME}"
+echo "[---] USERDB: ${USERDB}"
+
 docker build --build-arg USERDB=${USERDB} --build-arg DBNAMEDB=${DBNAMEDB} --build-arg PASSWORDDB=${PASSWORDDB} --build-arg HOSTDB=${HOSTDB} -t $IMAGE_NAME .
 
+## Push the image so manifest-tool can find it
+docker push ${IMAGE_NAME}
+
+## Tag the  image so dockerhub can push it.
+docker tag ${IMAGE_NAME} ${IMAGE_NAME}
+
+echo "[***] ...build hook complete."
