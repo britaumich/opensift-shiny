@@ -48,12 +48,16 @@ COPY mountpoints/apps /srv/shiny-server
 RUN chown shiny:shiny /var/lib/shiny-server
 ARG USERDB
 RUN export USERDB=$USERDB
+ENV USERDB $USERDB
 ARG DBNAMEDB
 RUN export DBNAMEDB=$DBNAMEDB
+ENV DBNAMEDB $DBNAMEDB
 ARG PASSWORDDB
 RUN export PASSWORDDB=$PASSWORDDB
+ENV PASSWORDDB $PASSWORDDB
 ARG HOSTDB
 RUN export HOSTDB=$HOSTDB
+ENV HOSTDB $HOSTDB
 RUN env | grep -v 'IGNORE' | grep -v -P '^_' | perl -pe 's/^([^=]+)=(.+)$/Sys.setenv($1='"'"'$2'"'"')/' >> /etc/env.R
 
 EXPOSE 3838

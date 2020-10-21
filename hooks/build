@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker build -t $IMAGE_NAME . --build-arg USERDB=${USERDB} --build-arg DBNAMEDB=${DBNAMEDB} --build-arg PASSWORDDB=${PASSWORDDB} --build-arg HOSTDB=${HOSTDB}
+docker build --build-arg USERDB=${USERDB} --build-arg DBNAMEDB=${DBNAMEDB} --build-arg PASSWORDDB=${PASSWORDDB} --build-arg HOSTDB=${HOSTDB} -t $IMAGE_NAME .
 
