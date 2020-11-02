@@ -1,5 +1,9 @@
 FROM rocker/shiny:latest
 
+RUN adduser -D -u 8877 shiny
+USER shiny
+
+
 RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     libglpk-dev \
     libxml2-dev \
