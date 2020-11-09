@@ -1,6 +1,6 @@
 FROM rocker/shiny:latest
 
-RUN adduser -D -u 8877 shiny
+RUN adduser -u 8877 shiny
 USER shiny
 
 
@@ -30,25 +30,16 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     caTools \
     && rm -rf /tmp/downloaded_packages
 
-#    libmariadbd-dev \
-#    libmariadbclient-dev \
-#    BiocManager \
-
 # Download and install shiny server
 #RUN wget https://download3.rstudio.org/ubuntu-14.04/x86_64/VERSION -O "version.txt" && \
 #    VERSION=$(cat version.txt)  
 #RUN  wget "https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-$VERSION-amd64.deb" -O ss-latest.deb 
 RUN  wget "https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.7.902-amd64.deb" -O ss-latest.deb 
-#RUN    gdebi -n ss-latest.deb 
-#RUN  rm -f version.txt ss-latest.deb && \
-#    . /etc/environment 
-#RUN cp -R /usr/local/lib/R/site-library/shiny/examples/* /srv/shiny-server/ 
+
 RUN mkdir -p /code
 COPY packages.R /code/packages.R
-#COPY .env /var/check.Renviron
 RUN sudo Rscript /code/packages.R
 COPY mountpoints/apps /srv/shiny-server
-#RUN R -e "install.packages(c('shiny', 'rmarkdown'), repos='$MRAN')"
 RUN chown shiny:shiny /var/lib/shiny-server
 ARG IMAGE_NAME
 RUN export IMAGE_NAME=$IMAGE_NAME
