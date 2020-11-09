@@ -1,6 +1,5 @@
 FROM rocker/shiny:latest
 
-RUN adduser -u 8877 shiny
 USER shiny
 
 
