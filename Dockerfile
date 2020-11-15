@@ -30,13 +30,18 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
 #RUN wget https://download3.rstudio.org/ubuntu-14.04/x86_64/VERSION -O "version.txt" && \
 #    VERSION=$(cat version.txt)  
 #RUN  wget "https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-$VERSION-amd64.deb" -O ss-latest.deb 
-RUN  wget "https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.7.902-amd64.deb" -O ss-latest.deb 
+# RUN  wget "https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.7.902-amd64.deb" -O ss-latest.deb 
 
 RUN mkdir -p /code
 COPY packages.R /code/packages.R
 RUN sudo Rscript /code/packages.R
 COPY mountpoints/apps /srv/shiny-server
-RUN chown shiny:shiny /var/lib/shiny-server
+# RUN chown shiny:shiny /var/lib/shiny-server
+RUN chgrp -R 0 /var/lib/shiny-server && \
+    chmod -R g=u /var/lib/shiny-server 
+USER 1001
+RUN chown -R 1001:0 /var/lib/shiny-server
+
 ARG IMAGE_NAME
 RUN export IMAGE_NAME=$IMAGE_NAME
 ENV IMAGE_NAME $IMAGE_NAME
