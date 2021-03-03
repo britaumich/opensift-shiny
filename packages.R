@@ -74,7 +74,7 @@ using ("ape",
 "withr",
 "xtable"
 )
-using ("shiny", "shinythemes")
+using ("shinythemes")
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
