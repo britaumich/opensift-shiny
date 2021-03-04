@@ -77,7 +77,9 @@ RUN chgrp -R 0 /opt/app-root/src/test/ && \
 ## install dditional R packages
 RUN mkdir -p /opt/app-root/src/code
 COPY packages.R /opt/app-root/src/code/packages.R
-RUN sudo Rscript /opt/app-root/src/code/packages.R
+# RUN sudo Rscript /opt/app-root/src/code/packages.R
+RUN Rscript /opt/app-root/src/code/packages.R
+
 ## Copy my shiny app
 ADD CZEUM_Interact_Tree /opt/app-root/src/CZEUM_Interact_Tree
 RUN chgrp -R 0 /opt/app-root/src/CZEUM_Interact_Tree && \
