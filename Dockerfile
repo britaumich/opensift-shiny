@@ -33,7 +33,7 @@ RUN yum -y install \
     && yum clean all
 ## Install rquired R Packagees
 RUN R -e "install.packages(c('shiny', 'rmarkdown', 'devtools', 'RJDBC', 'packrat', 'digest', 'mongolite', 'jsonlite', 'openxlsx', 'tools', 'dplyr', 'tidyr'), repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages(c('tidyverse', formatR, remotes, selectr, caTools), repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('tidyverse', 'formatR', 'remotes', 'selectr', 'caTools'), repos='http://cran.rstudio.com/')"
 ## Copy and install my own library used by the shiny server
 ## ADD apeDatabase /opt/app-root/apeDatabase
 ## RUN R -e "install.packages('/opt/app-root/apeDatabase', repos = NULL, type='source')"
