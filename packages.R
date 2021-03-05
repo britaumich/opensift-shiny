@@ -3,7 +3,7 @@ using<-function(...) {
     req<-unlist(lapply(libs,require,character.only=TRUE))
     need<-libs[req==FALSE]
     if(length(need)>0){ 
-        install.packages(need, lib="/usr/local/lib/R/library")
+        install.packages(need, repos='http://cran.rstudio.com/')
         lapply(need,require,character.only=TRUE)
     }
 }
@@ -76,6 +76,6 @@ using ("ape",
 )
 using ("shinythemes")
 if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+    install.packages("BiocManager", repos='http://cran.rstudio.com/')
 
 BiocManager::install("ggtree")
